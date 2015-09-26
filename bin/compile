@@ -3,7 +3,7 @@ TURBO_VERSION=1.1.4
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
-
+PATH=$PATH:~/sbin
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
