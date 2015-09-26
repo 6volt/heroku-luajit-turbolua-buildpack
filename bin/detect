@@ -2,7 +2,7 @@
 # bin/detect <build-dir>
 
 if [ -f $1/main.lua ]; then
-  echo "Node.js"
+  echo "Lua"
   exit 0
 fi
 
