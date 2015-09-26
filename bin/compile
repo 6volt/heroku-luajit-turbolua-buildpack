@@ -12,7 +12,7 @@ set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
-
+rm $BUILD_DIR/.profile.d/lua.sh
   wget http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz && \
   tar xzf LuaJIT-$LUAJIT_VERSION.tar.gz && \
   cd LuaJIT-$LUAJIT_VERSION && \
@@ -25,5 +25,5 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   make LUAJIT_VERSION=$LUAJIT_VERSION && \
   make PREFIX=$BUILD_DIR/luajit install 
   echo $PATH
-  mkdir -p $build/.profile.d
-  echo 'PATH='$PATH > $build/.profile.d/lua.sh
+  mkdir -p $BUILD_DIR/.profile.d
+  echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh
