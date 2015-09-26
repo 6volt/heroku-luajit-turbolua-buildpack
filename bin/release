@@ -4,6 +4,7 @@
 cat <<EOF
 ---
 config_vars:
-LUA_CPATH: ./?.so;/app/luajit/lib/lua/5.1/?.so
+  PATH=$PATH:/app/luajit/bin
+  LUA_CPATH: ./?.so;/app/luajit/lib/lua/5.1/?.so
   LUA_PATH: ./?.lua;/app/luajit/share/lua/5.1/?.lua;/app/packages/share/lua/5.1/?/init.lua
 EOF
