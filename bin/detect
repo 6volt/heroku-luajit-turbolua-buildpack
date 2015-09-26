@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-# bin/detect <build-dir>
+# bin/detect /usr/local/bin
