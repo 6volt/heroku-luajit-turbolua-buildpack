@@ -15,7 +15,6 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   make && \
   make PREFIX=$BUILD_DIR/luajit install && \
   cd .. && \
-  rm -rf luajit-$LUA_VERSION luajit-$LUA_VERSION.tar.gz
   
   curl -L https://github.com/kernelsauce/turbo/archive/v$TURBO_VERSION.tar.gz > turbo-$TURBO_VERSION.tar.gz && \
   tar xzf turbo-$TURBO_VERSION.tar.gz && \
@@ -23,4 +22,3 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   make LUAJIT_VERSION=$LUAJIT_VERSION && \
   make PREFIX=$BUILD_DIR/luajit install && \
   cd .. && \
-  rm -rf turbo-$TURBO_VERSION turbo-$TURBO_VERSION.tar.gz
