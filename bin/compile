@@ -3,7 +3,7 @@ TURBO_VERSION=1.1.4
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/luajit/lib
+LD_LIBRARY_PATH:/app/luajit/lib
 
 PATH=/sbin:/app/luajit/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/bin:/usr/local/bin:/bin
 
@@ -28,4 +28,4 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   echo $PATH
   mkdir -p $BUILD_DIR/.profile.d
   echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
-  echo $LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/app/luajit/lib' >> $BUILD_DIR/.profile.d/lua.sh
+  echo LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/app/luajit/lib' >> $BUILD_DIR/.profile.d/lua.sh
