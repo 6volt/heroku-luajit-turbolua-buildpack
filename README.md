@@ -1,1 +1,1 @@
-# heroku-luajit-turbolua-buildpack
+# heroku-(luajit+turbolua)-buildpack
