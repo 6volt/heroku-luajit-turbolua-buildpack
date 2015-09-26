@@ -6,26 +6,23 @@ ENV_DIR=${3:-}
 LD_LIBRARY_PATH:/app/luajit/lib
 
 PATH=/sbin:/app/luajit/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/bin:/usr/local/bin:/bin
-
- 
-  
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 set -o nounset    # fail on unset variables
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
 
-  wget http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz && \
-  tar xzf LuaJIT-$LUAJIT_VERSION.tar.gz && \
-  cd LuaJIT-$LUAJIT_VERSION && \
-  make && \
-  make PREFIX=$BUILD_DIR/luajit install 
-  
-  curl -L https://github.com/kernelsauce/turbo/archive/v$TURBO_VERSION.tar.gz > turbo-$TURBO_VERSION.tar.gz && \
-  tar xzf turbo-$TURBO_VERSION.tar.gz && \
-  cd turbo-$TURBO_VERSION && \
-  make LUAJIT_VERSION=$LUAJIT_VERSION && \
-  make PREFIX=$BUILD_DIR/luajit install 
-  echo $PATH
-  mkdir -p $BUILD_DIR/.profile.d
-  echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
-  echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/luajit/lib' >> $BUILD_DIR/.profile.d/lua.sh
+wget http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz && \
+tar xzf LuaJIT-$LUAJIT_VERSION.tar.gz && \
+cd LuaJIT-$LUAJIT_VERSION && \
+make && \
+make PREFIX=$BUILD_DIR/luajit install 
+
+curl -L https://github.com/kernelsauce/turbo/archive/v$TURBO_VERSION.tar.gz > turbo-$TURBO_VERSION.tar.gz && \
+tar xzf turbo-$TURBO_VERSION.tar.gz && \
+cd turbo-$TURBO_VERSION && \
+make LUAJIT_VERSION=$LUAJIT_VERSION && \
+make PREFIX=$BUILD_DIR/luajit install 
+
+mkdir -p $BUILD_DIR/.profile.d
+echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/luajit/lib' >> $BUILD_DIR/.profile.d/lua.sh
