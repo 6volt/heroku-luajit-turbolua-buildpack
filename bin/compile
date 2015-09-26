@@ -5,8 +5,8 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
 PATH=/sbin:/app/luajit/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/bin:/usr/local/bin:/bin
-LUA_CPATH=./?.so;/app/luajit/lib/lua/5.1/?.so
-LUA_PATH=/app/luajit/share/lua/5.1/?.lua
+
+
   
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
@@ -26,4 +26,6 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   make PREFIX=$BUILD_DIR/luajit install 
   echo $PATH
   mkdir -p $BUILD_DIR/.profile.d
-  echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh
+  echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
+  echo "LUA_CPATH=./?.so;/app/luajit/lib/lua/5.1/?.so" >> $BUILD_DIR/.profile.d/lua.sh  
+  echo "LUA_PATH=/app/luajit/share/lua/5.1/?.lua" >> $BUILD_DIR/.profile.d/lua.sh
