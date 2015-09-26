@@ -1,11 +1,20 @@
 ENV LUAJIT_VERSION 2.0.4
 ENV TURBO_VERSION 1.1.4
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+set -o nounset    # fail on unset variables
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
 
+mkdir /usr/local/tluajit
+mkdir /usr/local/tluajit/luajit
   wget http://luajit.org/download/LuaJIT-$LUAJIT_VERSION.tar.gz && \
   tar xzf LuaJIT-$LUAJIT_VERSION.tar.gz && \
   cd LuaJIT-$LUAJIT_VERSION && \
   make && \
-  make install && \
+  make PREFIX=$BUILD_DIR/luajit install && \
   cd .. && \
   rm -rf luajit-$LUA_VERSION luajit-$LUA_VERSION.tar.gz
   
@@ -13,6 +22,6 @@ ENV TURBO_VERSION 1.1.4
   tar xzf turbo-$TURBO_VERSION.tar.gz && \
   cd turbo-$TURBO_VERSION && \
   make LUAJIT_VERSION=$LUAJIT_VERSION && \
-  make install && \
+  make PREFIX=$BUILD_DIR/luajit install && \
   cd .. && \
   rm -rf turbo-$TURBO_VERSION turbo-$TURBO_VERSION.tar.gz

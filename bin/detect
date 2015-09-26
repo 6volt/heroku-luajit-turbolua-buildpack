@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
-# bin/detect /usr/local/bin
+# bin/detect <build-dir>
+
+if [ -f $1/main.lua ]; then
+  echo "Node.js"
+  exit 0
+fi
+
+exit 1

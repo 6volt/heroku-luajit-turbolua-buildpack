@@ -5,8 +5,8 @@
 cat << EOF
 ---
 config_vars:
-  PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
-  LD_LIBRARY_PATH: /app/packages/lib
-  LUA_CPATH: ./?.so;/app/packages/lib/lua/5.1/?.so
-  LUA_PATH: ./?.lua;/app/packages/share/lua/5.1/?.lua;/app/packages/share/lua/5.1/?/init.lua
+  PATH: /app/bin:/usr/local/bin:/usr/local/tluajit:/usr/bin:/bin
+  LD_LIBRARY_PATH: /app/packages/lib:/usr/local/tluajit:
+  LUA_CPATH: ./?.so;/app/packages/lib/lua/5.1/?.so;/usr/local/tluajit/share/lib/lua/5.1/?.lua
+  LUA_PATH: ./?.lua;/app/packages/share/lua/5.1/?.lua;/app/packages/share/lua/5.1/?/init.lua;/usr/local/tluajit/share/lib/lua/5.1/?.so
 EOF
