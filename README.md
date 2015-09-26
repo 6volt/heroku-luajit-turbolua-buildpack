@@ -15,13 +15,17 @@ How to setup :
  web:	luajit -e '_G.package.cpath=[[/app/luajit/lib/?.so]];_G.package.path=[[/app/luajit/share/lua/5.1/?.lua]]'  main.lua
  
  6)create file named main.lua with next content:
- ```local turbo = require "turbo"```
-  ```local ExampleHandler = class("ExampleHandler", turbo.web.RequestHandler)```
-    ``` function ExampleHandler:get()```
-	     ``` self:write("Hello , Heroku")```
-  `` end```
-  ``` turbo.web.Application({{"^/$", ExampleHandler}}):listen(tonumber(os.getenv('PORT')))```
-   ```turbo.ioloop.instance():start()```
+```lua
+local turbo = require "turbo"
+local ExampleHandler = class("ExampleHandler", turbo.web.RequestHandler)
+
+function ExampleHandler:get()
+	self:write("Hello , Heroku")
+end
+
+turbo.web.Application({{"^/$", ExampleHandler}}):listen(tonumber(os.getenv('PORT')))
+turbo.ioloop.instance():start()
+```
    
    7)type in your shell : git init;git add . ;git commit -am 'text';git push
    
