@@ -28,4 +28,4 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   echo $PATH
   mkdir -p $BUILD_DIR/.profile.d
   echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
-  echo $LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/luajit/lib" >> $BUILD_DIR/.profile.d/lua.sh
+  echo $LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/app/luajit/lib' >> $BUILD_DIR/.profile.d/lua.sh
