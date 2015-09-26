@@ -29,3 +29,4 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   echo "PATH="$PATH > $BUILD_DIR/.profile.d/lua.sh  
   echo 'LUA_CPATH="./?.so;/app/luajit/lib/lua/5.1/?.so"' >> $BUILD_DIR/.profile.d/lua.sh  
   echo 'LUA_PATH="/app/luajit/share/lua/5.1/?.lua"' >> $BUILD_DIR/.profile.d/lua.sh
+  echo "LD_LIBRARY_PATH=/app/luajit/lib" >> $BUILD_DIR/.profile.d/lua.sh
