@@ -3,6 +3,7 @@ TURBO_VERSION=1.1.4
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
+
 PATH=/sbin:/app/luajit/bin:/usr/local/bin:/usr/bin:/bin:/sbin:/usr/bin:/usr/local/bin:/bin
 LUA_CPATH=./?.so;/app/luajit/lib/lua/5.1/?.so
 LUA_PATH=/app/luajit/share/lua/5.1/?.lua
@@ -23,3 +24,6 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build step
   cd turbo-$TURBO_VERSION && \
   make LUAJIT_VERSION=$LUAJIT_VERSION && \
   make PREFIX=$BUILD_DIR/luajit install 
+  echo $PATH
+  mkdir -p $build/.profile.d
+  echo $PATH > $build/.profile.d/go.sh
