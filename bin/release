@@ -4,5 +4,6 @@
 cat <<EOF
 ---
 config_vars:
+	PATH=luajit/bin/
 
 EOF
